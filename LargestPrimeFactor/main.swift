@@ -10,7 +10,7 @@ struct FindPrimeFactors {
                 divisibleBy = try findDivisibleNumber(num)
                 num = num / divisibleBy
                 primeFactors.append(divisibleBy)
-            } catch DivisibleError.error {
+            } catch DivisibleError.allDone {
                 break
             } catch {
                 return
@@ -21,17 +21,17 @@ struct FindPrimeFactors {
     }
     
     enum DivisibleError : Error {
-        case error
+        case allDone
     }
 
     private static func findDivisibleNumber(_ number : Int) throws ->  Int {
-        var contador = 2
+        var counter = 2
         while true {
-            if contador > number { throw DivisibleError.error }
-            if number % contador == 0 {
-                return contador
+            if counter > number { throw DivisibleError.allDone }
+            if number % counter == 0 {
+                return counter
             }
-            contador += 1
+            counter += 1
         }
     }
 }
