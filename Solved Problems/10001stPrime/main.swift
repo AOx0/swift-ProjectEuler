@@ -2,25 +2,23 @@ import Foundation
 
 func getPrimes(printPosition : Int) -> Int {
     
-    var founded = 0
+    var results : [Int] = []
     var counter = 1
+    var found = 0
     while true {
+        if found == printPosition { return counter }
         var divisibleBy = false
         counter += 1
         
-        if counter > 9 {
-            let counterString = String(counter)
-            let lastChar : Character =  counterString[counterString.index(before: counterString.endIndex)]
-            if lastChar == "0" || lastChar == "5" || lastChar == "4" || lastChar == "2" || lastChar == "8" || lastChar == "6" { continue }
+        for previousResult in results {
+            if counter.isMultiple(of: previousResult) { divisibleBy = true; break }
         }
         
-        for j in 1..<counter {
-            if j == 1 { continue }
-            if counter.isMultiple(of: j) { divisibleBy = true; break }
-        }
         
-        founded += divisibleBy ? 0 : 1
-        guard founded != printPosition else { return counter }
+        if divisibleBy == false {
+            results.append(counter)
+            found += 1
+        }
     }
 }
 
