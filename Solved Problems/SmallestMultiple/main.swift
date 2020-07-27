@@ -44,7 +44,7 @@ while true {
         else { validOnes = 0; continue }
     }
     
-    //print(counter)
+    //print(counter, terminator: "\r")
     if validOnes >= target {
         print(counter, terminator: "")
         print(" \(validOnes)")
